@@ -5,20 +5,23 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public float Speed;
-    private Vector3 VecDir;
+    private Vector2 VecDir;
+
+    private Rigidbody2D RB2D;
+    private Vector2 MoveVel;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        RB2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        VecDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-        VecDir *= Speed;
+        VecDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        MoveVel = VecDir.normalized * Speed;
 
-        GetComponent<CharacterController>().Move(VecDir * Time.deltaTime);
+        RB2D.MovePosition( RB2D.position + MoveVel * Time.deltaTime);
     }
 }
