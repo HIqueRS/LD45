@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8825832709681954966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e093f119b7e8e4fa44cb0ceff8e3dc, type: 3}
+  m_Script: {fileID: 11500000, guid: b81c2b282f151c14a8e85c8eb2623fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
@@ -111,7 +111,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

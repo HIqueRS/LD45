@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Move : MonoBehaviour
+public abstract class Parasite : MonoBehaviour
 {
     public float Speed;
     private Vector2 VecDir;
 
-    private Rigidbody2D RB2D;
+    protected Rigidbody2D RB2D;
     private Vector2 MoveVel;
 
     public GameObject Eject;
@@ -24,7 +24,7 @@ public abstract class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!Ejected)
+        if (!Ejected)
         {
             Movement();
             Ejecting();
@@ -54,9 +54,9 @@ public abstract class Move : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Debug.Log(Force);
+            
             Force += 10;
-           
+
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -68,7 +68,7 @@ public abstract class Move : MonoBehaviour
             Proj.GetComponent<Rigidbody2D>().AddForce(transform.up * Force);
             Force = 0;
 
-           
+
 
             Ejected = true;
         }
@@ -76,7 +76,7 @@ public abstract class Move : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Parasite")
+        if (collision.gameObject.tag == "Parasite")
         {
             Destroy(collision.gameObject);
             Ejected = false;
@@ -84,5 +84,4 @@ public abstract class Move : MonoBehaviour
     }
 
     public abstract void Especial();
-
 }
