@@ -45,6 +45,8 @@ public abstract class Base_Animal : MonoBehaviour
 
         Wait += Time.deltaTime;
         WaitBt += Time.deltaTime;
+
+        Especial();
     }
 
     private void Movement()
