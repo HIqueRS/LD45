@@ -53,32 +53,26 @@ public class Parasyte : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameObjVit = collision.gameObject;
-            Vitima = true;
-            // Debug.Log("asdasda");
+           
+            
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-
-            Vitima = false;
-            // Debug.Log("asdasda");
-        }
-    }
+  
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                Debug.Log("asdasda");
-                GameObjVit.GetComponent<Base_Animal>().Parasitizing();
-                Destroy(gameObject);
-            }
+        
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    Debug.Log("asdasda");
+                    GameObjVit.GetComponent<Base_Animal>().Parasitizing();
+                    Destroy(gameObject);
+                }
+            
+           
         }
     }
 

@@ -16,6 +16,7 @@ public abstract class Base_Animal : MonoBehaviour
 
     private float Force = 0;
     private float Wait = 0;
+    private float WaitBt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,11 @@ public abstract class Base_Animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Aim();
+        if(WaitBt > 0.2)
+        {
+            Aim();
+        }
+        
 
         if (!Ejected)
         {
@@ -39,6 +44,7 @@ public abstract class Base_Animal : MonoBehaviour
 
 
         Wait += Time.deltaTime;
+        WaitBt += Time.deltaTime;
     }
 
     private void Movement()
@@ -55,7 +61,7 @@ public abstract class Base_Animal : MonoBehaviour
 
     private void Ejecting()
     {
-        if(Wait > 0.2)
+        if(Wait > 0.5)
         {
             if (Input.GetKey(KeyCode.Space))
             {
@@ -118,24 +124,28 @@ public abstract class Base_Animal : MonoBehaviour
         {
             Dir.x = 1;
             Dir.y = 1;
+            WaitBt = 0;
         }
         else if ((Input.GetAxisRaw("Horizontal") > 0) && (Input.GetAxisRaw("Vertical") < 0))//dir baix
         {
             Dir.x = 1;
             Dir.y = -1;
+            WaitBt = 0;
         }
         else if ((Input.GetAxisRaw("Horizontal") < 0) && (Input.GetAxisRaw("Vertical") < 0))//esq bai
         {
             Dir.x = -1;
             Dir.y = -1;
+            WaitBt = 0;
         }
         else if ((Input.GetAxisRaw("Horizontal") < 0) && (Input.GetAxisRaw("Vertical") > 0))//esq cim
         {
             Dir.x = -1;
             Dir.y = 1;
+            WaitBt = 0;
         }
 
-
+       
 
     }
 
