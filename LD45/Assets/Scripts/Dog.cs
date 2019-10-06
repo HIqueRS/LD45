@@ -15,5 +15,6 @@ public class Dog : Base_Animal
 
     public override void Especial()
     {
+
     }
 }

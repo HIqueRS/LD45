@@ -27,16 +27,19 @@ public abstract class Base_Animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(WaitBt > 0.2)
-        {
-            Aim();
-        }
+       
         
 
         if (!Ejected)
         {
             Movement();
             Ejecting();
+            Especial();
+
+            if (WaitBt > 0.2)
+            {
+                Aim();
+            }
         }
 
         RB2D.velocity = new Vector2(0, 0);
@@ -46,7 +49,7 @@ public abstract class Base_Animal : MonoBehaviour
         Wait += Time.deltaTime;
         WaitBt += Time.deltaTime;
 
-        Especial();
+     
     }
 
     private void Movement()
