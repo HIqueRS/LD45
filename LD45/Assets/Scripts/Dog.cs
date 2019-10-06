@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dog : Parasite
+public class Dog : Base_Animal
 {
 
     public float Dog_Speed;

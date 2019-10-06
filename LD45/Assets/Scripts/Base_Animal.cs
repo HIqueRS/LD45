@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Parasite : MonoBehaviour
+public abstract class Base_Animal : MonoBehaviour
 {
     public float Speed;
     private Vector2 VecDir;
@@ -36,18 +36,18 @@ public abstract class Parasite : MonoBehaviour
         RB2D.velocity = new Vector2(0, 0);
         RB2D.angularVelocity = 0;
 
-       
+
 
     }
 
     private void Movement()
     {
-        VecDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-       
+        VecDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
         MoveVel = VecDir.normalized * Speed;
 
 
-       
+
 
         RB2D.MovePosition(RB2D.position + MoveVel * Time.deltaTime);
     }
@@ -55,18 +55,21 @@ public abstract class Parasite : MonoBehaviour
     private void Ejecting()
     {
         if (Input.GetKey(KeyCode.Space))
-        {            
-            Force += 10;
+        {
+            Force += 10f;
         }
         if (Input.GetKeyUp(KeyCode.Space))
-        {            
+        {
             if (Force > 100)
             {
-                GameObject Proj = Instantiate(Eject, transform.position  + new Vector3( Dir.x*2 ,Dir.y*2 ), Quaternion.identity);
-                Proj.GetComponent<Rigidbody2D>().AddForce(Dir * 500);
-                
-                Ejected = true;
+                Force = 100;
             }
+
+            GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1, Dir.y * 1), Quaternion.identity);
+            Proj.GetComponent<Rigidbody2D>().AddForce(Dir * (100 + Force));
+            
+            Ejected = true;
+           
             Force = 0;
         }
     }
@@ -95,12 +98,12 @@ public abstract class Parasite : MonoBehaviour
             Dir.y = 0;
         }
 
-        if(Input.GetAxisRaw("Vertical") > 0)
+        if (Input.GetAxisRaw("Vertical") > 0)
         {
             Dir.y = 1;
             Dir.x = 0;
         }
-        else if(Input.GetAxisRaw("Vertical") < 0)
+        else if (Input.GetAxisRaw("Vertical") < 0)
         {
             Dir.y = -1;
             Dir.x = 0;

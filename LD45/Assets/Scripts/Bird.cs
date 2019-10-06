@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : Parasite
+public class Bird : Base_Animal
 {
     public override void Especial()
     {
