@@ -15,6 +15,7 @@ public abstract class Base_Animal : MonoBehaviour
     public bool Ejected;
 
     private float Force = 0;
+    private float Wait = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public abstract class Base_Animal : MonoBehaviour
         RB2D.angularVelocity = 0;
 
 
-
+        Wait += Time.deltaTime;
     }
 
     private void Movement()
@@ -54,33 +55,37 @@ public abstract class Base_Animal : MonoBehaviour
 
     private void Ejecting()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if(Wait > 0.2)
         {
-            Force += 10f;
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (Force > 100)
+            if (Input.GetKey(KeyCode.Space))
             {
-                Force = 100;
+                Force += 10f;
             }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (Force > 100)
+                {
+                    Force = 100;
+                }
 
-            GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1, Dir.y * 1), Quaternion.identity);
-            Proj.GetComponent<Rigidbody2D>().AddForce(Dir * (100 + Force));
-            
-            Ejected = true;
-           
-            Force = 0;
+                GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1, Dir.y * 1), Quaternion.identity);
+                Proj.GetComponent<Rigidbody2D>().AddForce(Dir * (100 + Force));
+
+                Ejected = true;
+
+                Force = 0;
+            }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Parasite")
-        {
-            Destroy(collision.gameObject);
-            Ejected = false;
-        }
+        //if (collision.gameObject.tag == "Parasite")
+        //{
+        //    Destroy(collision.gameObject);
+        //    Ejected = false;
+        //}
     }
 
     protected void Aim()
@@ -135,4 +140,11 @@ public abstract class Base_Animal : MonoBehaviour
     }
 
     public abstract void Especial();
+
+    public void Parasitizing()
+    {
+        Wait = 0;
+        Ejected = false;
+       
+    }
 }

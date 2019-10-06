@@ -13,11 +13,15 @@ public class Parasyte : MonoBehaviour
 
     public float Life;
 
+    private bool Vitima;
+    private GameObject GameObjVit;
+
     // Start is called before the first frame update
     void Start()
     {
         RB2D = GetComponent<Rigidbody2D>();
         Life = 5;
+        Vitima = false;
     }
 
     // Update is called once per frame
@@ -43,4 +47,42 @@ public class Parasyte : MonoBehaviour
         if((Input.GetAxisRaw("Horizontal") != 0) || (Input.GetAxisRaw("Vertical") != 0))
             RB2D.AddForce(MoveVel * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameObjVit = collision.gameObject;
+            Vitima = true;
+            // Debug.Log("asdasda");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+            Vitima = false;
+            // Debug.Log("asdasda");
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Debug.Log("asdasda");
+                GameObjVit.GetComponent<Base_Animal>().Parasitizing();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+   
 }
+
+
