@@ -8,4 +8,14 @@ public class Bird : Base_Animal
     {
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+    }
 }
