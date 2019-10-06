@@ -33,18 +33,27 @@ public class Bird : Base_Animal
 
             RaycastHit2D hit2D = Physics2D.Raycast(Obj.transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -0.5f));
 
+            if (hit2D)
+            {
+                Debug.Log(hit2D.transform.gameObject.name);
+            }
+
             if (!hit2D)
             {
-                if (WaitObj > 0.2f)
-                {
-                    if (Input.GetKeyDown(KeyCode.E))
+                //if(hit2D.transform.gameObject.layer != 9)
+                //{
+                    if (WaitObj > 0.2f)
                     {
-                        WithObj = false;
-                        WaitObj = 0;
-                        Obj.transform.position = Obj.transform.position + new Vector3(0, -0.5f, 0);
-                        Obj.GetComponent<BoxCollider2D>().enabled = true;
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            WithObj = false;
+                            WaitObj = 0;
+                            Obj.transform.position = Obj.transform.position + new Vector3(0, -0.5f, 0);
+                            Obj.GetComponent<BoxCollider2D>().enabled = true;
+                        }
                     }
-                }
+               // }
+               
             }
 
            
