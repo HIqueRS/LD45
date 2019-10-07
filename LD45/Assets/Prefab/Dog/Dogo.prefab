@@ -46,13 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81c2b282f151c14a8e85c8eb2623fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 0.1
   Eject: {fileID: 2402419991172076341, guid: c024b9cd69c4ae34fbef9b86c5c15cf7, type: 3}
   Ejected: 1
+
   Muco: {fileID: 5252068132442511207, guid: 3f894c17a326a8b4cbb07f5023861ea9, type: 3}
   Projectile_Force: 500
   MaxWait: 0.75
   Distance: 1.25
+
 --- !u!212 &8825832709681954964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +92,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1911a97125d3c9440837485ca1ad4d53, type: 3}
+  m_Sprite: {fileID: 1480917699468073914, guid: e889e8417c561d841aecabc7758385eb,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,6 +138,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12784347, y: -0.671592}
-  m_Size: {x: 1.0506624, y: 0.4574687}
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 0.5, y: 0.25}
   m_Direction: 1
