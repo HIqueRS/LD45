@@ -28,10 +28,11 @@ public class Bird : Base_Animal
             Obj.transform.position = transform.GetChild(0).transform.position;
             Obj.GetComponent<BoxCollider2D>().enabled = false;
 
-            Debug.DrawRay(Obj.transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -0.5f));
+            Debug.DrawRay(Obj.transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -0.1f));
             //Vector2 teste = Obj.transform.position + new Vector3(0, -1,0);
 
-            RaycastHit2D hit2D = Physics2D.Raycast(Obj.transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -0.5f));
+            RaycastHit2D hit2D = Physics2D.Raycast(Obj.transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -0.1f),0.1f);
+            
 
             if (hit2D)
             {

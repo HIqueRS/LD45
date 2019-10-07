@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Base_Animal : MonoBehaviour
 {
     public float Speed;
-    private Vector2 VecDir;
-    private Vector2 Dir;
+    protected Vector2 VecDir;
+    protected Vector2 Dir;
 
     protected Rigidbody2D RB2D;
     private Vector2 MoveVel;
@@ -14,9 +14,9 @@ public abstract class Base_Animal : MonoBehaviour
     public GameObject Eject;
     public bool Ejected;
 
-    private float Force = 0;
-    private float Wait = 0;
-    private float WaitBt = 0;
+    protected float Force = 0;
+    protected float Wait = 0;
+    protected float WaitBt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,9 @@ public abstract class Base_Animal : MonoBehaviour
 
         if (!Ejected)
         {
+            RB2D.constraints = RigidbodyConstraints2D.None;
+            RB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             Movement();
             Ejecting();
             Especial();
@@ -41,9 +44,14 @@ public abstract class Base_Animal : MonoBehaviour
                 Aim();
             }
         }
+        else
+        {
+            RB2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
 
-        RB2D.velocity = new Vector2(0, 0);
-        RB2D.angularVelocity = 0;
+        //RB2D.velocity = new Vector2(0, 0);
+        //RB2D.angularVelocity = 0;
+        
 
 
         Wait += Time.deltaTime;
