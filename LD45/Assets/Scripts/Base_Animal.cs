@@ -21,11 +21,23 @@ public abstract class Base_Animal : MonoBehaviour
 
     protected SpriteRenderer sprite;
 
+    public Cinemachine.CinemachineVirtualCamera cam;
+
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         RB2D = GetComponent<Rigidbody2D>();
+
+        if (!Ejected)
+        {
+            if(cam)
+            {
+                cam.Follow = gameObject.transform;
+            }
+            
+        }
+        
     }
 
     // Update is called once per frame
@@ -99,6 +111,8 @@ public abstract class Base_Animal : MonoBehaviour
 
                 GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1 * Distance, Dir.y * 1 *Distance), Quaternion.identity);
                 Proj.GetComponent<Rigidbody2D>().AddForce(Dir * (100 + Force));
+                cam.Follow = Proj.gameObject.transform;
+                Proj.GetComponent<Parasyte>().cam = cam;
 
                 Ejected = true;
 

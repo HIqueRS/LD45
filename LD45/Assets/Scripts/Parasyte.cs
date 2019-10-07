@@ -16,6 +16,8 @@ public class Parasyte : MonoBehaviour
     private bool Vitima;
     private GameObject GameObjVit;
 
+    public Cinemachine.CinemachineVirtualCamera cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,8 @@ public class Parasyte : MonoBehaviour
                 {
                     Debug.Log("asdasda");
                     GameObjVit.GetComponent<Base_Animal>().Parasitizing();
+                    cam.Follow = GameObjVit.gameObject.transform;
+                    GameObjVit.GetComponent<Base_Animal>().cam = cam;
                     Destroy(gameObject);
                 }                     
         }
