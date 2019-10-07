@@ -49,12 +49,10 @@ MonoBehaviour:
   Speed: 0.1
   Eject: {fileID: 2402419991172076341, guid: c024b9cd69c4ae34fbef9b86c5c15cf7, type: 3}
   Ejected: 1
-
+  Distance: 0.5
   Muco: {fileID: 5252068132442511207, guid: 3f894c17a326a8b4cbb07f5023861ea9, type: 3}
   Projectile_Force: 500
   MaxWait: 0.75
-  Distance: 1.25
-
 --- !u!212 &8825832709681954964
 SpriteRenderer:
   m_ObjectHideFlags: 0

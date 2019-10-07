@@ -13,6 +13,7 @@ public abstract class Base_Animal : MonoBehaviour
 
     public GameObject Eject;
     public bool Ejected;
+    public float Distance;
 
     protected float Force = 0;
     protected float Wait = 0;
@@ -96,7 +97,7 @@ public abstract class Base_Animal : MonoBehaviour
                     Force = 100;
                 }
 
-                GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1, Dir.y * 1), Quaternion.identity);
+                GameObject Proj = Instantiate(Eject, transform.position + new Vector3(Dir.x * 1 * Distance, Dir.y * 1 *Distance), Quaternion.identity);
                 Proj.GetComponent<Rigidbody2D>().AddForce(Dir * (100 + Force));
 
                 Ejected = true;
