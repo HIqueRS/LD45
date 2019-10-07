@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Parasite
   - Obj
+  - Push
   layers:
   - Default
   - TransparentFX

@@ -18,17 +18,18 @@ public abstract class Base_Animal : MonoBehaviour
     protected float Wait = 0;
     protected float WaitBt = 0;
 
+    protected SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         RB2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-       
-        
+    {        
 
         if (!Ejected)
         {
@@ -39,7 +40,7 @@ public abstract class Base_Animal : MonoBehaviour
             Ejecting();
             Especial();
 
-            if (WaitBt > 0.2)
+            if (WaitBt > 0.25)
             {
                 Aim();
             }
@@ -66,7 +67,15 @@ public abstract class Base_Animal : MonoBehaviour
 
         MoveVel = VecDir.normalized * Speed;
 
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            sprite.flipX = false;
 
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            sprite.flipX = true;
+        }
 
 
         RB2D.MovePosition(RB2D.position + MoveVel * Time.deltaTime);
@@ -115,6 +124,7 @@ public abstract class Base_Animal : MonoBehaviour
         {
             Dir.x = 1;
             Dir.y = 0;
+
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
